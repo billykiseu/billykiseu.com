@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billykiseu/code</title>
+    <link rel="stylesheet" type='text/css' href="{% static 'styles/main.css' %}">
+    <link rel="icon" type="image/x-icon" sizes="any" href="{% static 'assets/favicon.png' %}">
+</head>
+
+<body>
+    {% include 'preloader.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+
+    {% include 'footer.html' %}
+
+    {% include 'cookieconsent.html' %}
+    
+    <script src="{% static 'styles/code.js' %}"></script>
+    <script src="{% static 'styles/autocomplete.js' %}"></script>
+    <script>
+        new Autocomplete('#search-full', {
+            search: input => {
+                console.log(input)
+                const url = `/search/?suggestions=${input}`
+                return new Promise(resolve => {
+                    fetch(url)
+
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            resolve(data.data)
+                        })
+                })
+            }
+        })
+        new Autocomplete('#search-mobile', {
+            search: input => {
+                console.log(input)
+                const url = `/search/?suggestions=${input}`
+                return new Promise(resolve => {
+                    fetch(url)
+
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data)
+                            resolve(data.data)
+                        })
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

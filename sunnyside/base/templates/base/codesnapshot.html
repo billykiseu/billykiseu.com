@@ -1,0 +1,19 @@
+{% load static %}
+
+<!--Code-->
+<div class="category-container">
+    <a href="#" class="category-header"><span>Code</span></a>
+    <div class="category-subcontainer">
+        {% for item in codeitems2 %}
+        <a class="anchor" href="{{item.mainlink}}" target="_blank">
+        <div class="card-small">
+            <span
+                class="category-text"><b>{{item.supercategory.name}}</b>/{{item.category.name}}/{{item.subcategory.name}}</span>
+            <span class="name-text"><b>{{item.name}}</b></span>
+            <span class="description-text">{{item.description}}</span>
+            <span class="date-text">{{item.created|timesince}} ago</span>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>

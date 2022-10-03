@@ -1,0 +1,40 @@
+#Playlist-data
+def cue2(request):
+qs= item.objects.filter(supercategory__name='music').order_by("hit_count_generic__hits")
+newest = qs.first()
+nextsong = next_in_order(newest, qs=qs)
+previoussong = prev_in_order(newest, qs=qs, loop=True)
+model= item
+context_object_name ='item'
+template_name = 'play.html'
+
+def get(self, request, *args, **kwargs):
+self.object = self.get_object()
+context = self.get_context_data(object=self.object)
+ip = get_client_ip(self.request)
+print(ip)
+if ipModel.objects.filter(ip=ip).exists():
+print("ip alredy present")
+item_id = request.Get.get('item-id')
+print(item_id)
+item = item.objects.get(ip=ip)
+item.views.add(ip.Model.object.get(ip=ip))
+else:
+ipModel.objects.create(ip=ip)
+item_id = request.Get.get('item-id')
+item = item.objects.get(pk=item_id)
+item.views.add(ip.Model.object.get(ip=ip))
+
+context = self.get_context_data(object=self.object),{'qs':qs,'newest':newest,
+'nextsong':nextsong,'previoussong':previoussong,}
+return render(request, 'base/testbench.html',context)
+
+def get_client_ip(request):
+x_forwarded_for = request.META.get('HTTP_X_FORWARDED')
+if x_forwarded_for:
+ip = x_forwarded_for.split(',')[0]
+else:
+ip = request.META.get('REMOVE_ADDR')
+return ip
+
+

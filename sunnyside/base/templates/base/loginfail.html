@@ -1,0 +1,44 @@
+{% extends 'maincredentials.html' %}
+{% load static %}
+{% block content %}
+<div class="splashb">
+    <!--Login-->
+    <div class="login-container" id="blogin">
+        <div class="blogo">
+            <img src="{% static 'assets/logo2.png' %}">
+        </div>
+        <div class="bcard">
+            <form action="login" method="POST">
+                {% csrf_token %}
+                <div class="bentry">
+                    <h3>Log In</h3>
+                </div>
+                <div class="bentry">
+                    <img src="{% static 'assets/user.png' %}" height="28">
+                    <input name="username" class="login-input" type="text" placeholder="Username.." required>
+                </div>
+                <div class="bentry">
+                    <img src="{% static 'assets/padlock.png' %}" height="22">
+                    <input name="password" input type="password" class="login-input" type="text"
+                        placeholder="Password.." required>
+                </div>
+                <div class="error">
+                   <h5>the details you entered are invalid</h5>
+                </div>
+                <div class="bentry">
+                    <a class="anchor" href="{% url 'explore' %}"><div class="generic-button4">Cancel</div></a>
+                    <button type="submit" class="generic-button3">Log In</button>
+                </div>
+                <div class="bentry">
+                    <h6>Dont have an account? <a href="signup">Sign Up</a></h6>
+                </div>
+                <div class="bentry">
+                    <h6><a href="recover">Forgot Password?</a></h6>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

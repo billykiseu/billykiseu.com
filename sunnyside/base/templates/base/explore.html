@@ -1,0 +1,270 @@
+{% extends 'mainexplore.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'logo.html' %}
+{% include 'navdropdowns.html' %}
+
+<!--Nav--Full-->
+<div class="nav-container-super show" id="peek">
+    <div class="nav-container">
+        <div class="search-container">
+            <!--Searchbar-->
+            <div class="search" id="search-full">
+                <form method="GET" action="{% url 'gsearch' %}">
+                    <img class="search-icon dark" id="search-icon-full" src="{% static 'assets/search.png' %}" height="28">
+                    <img class="close" id="close-full" src="{% static 'assets/cancel-search.png' %}" height="28">
+                    <input class="search-input" type="text" name="q" placeholder="Search kiseu.com" onclick="submit">
+                    <button class="go" type="submit" onclick="submit"><img id="go-icon" src="{% static 'assets/search.png' %}"
+                            height="30"></button>
+                </form>
+                    <ul class="autocomplete-result-list"></ul>
+            </div>
+
+        </div>
+        <div class="nav-bar active" id="nav-bar-full">
+            <div class="nav">
+                <ul>
+                    <div id="highlight">
+                        <li><a class="btn" href="code">
+                                <div class="menu-item" id="codeid"><img class="nav-icon" id="codeicon"
+                                        src="{% static 'assets/code.png' %}" height="20">Code<div class="underline"></div>
+                                </div>
+                            </a>
+                        <div class="drop-down-menu">
+                            {% include 'codedropdown.html' %}
+                        </div></li>
+                        <li><a class="btn" href="digitalart">
+                                <div class="menu-item" id="digitalartid"><img class="nav-icon" id="digitalarticon"
+                                        src="{% static 'assets/digitalart.png' %}" height=20">Digital art<div class="underline2"></div>
+                                </div>
+                            </a>
+                        <div class="drop-down-menu">
+                            {% include 'digitalartdropdown.html' %}
+                        </div></li>
+                        <li><a class="btn" href="music">
+                                <div class="menu-item" id="musicid"><img class="nav-icon" id="musicicon"
+                                        src="{% static 'assets/music.png' %}" height="20">Music<div class="underline"></div>
+                                </div>
+                            </a>
+                        <div class="drop-down-menu">
+                            {% include 'musicdropdown.html' %}
+                        </div></li>
+                        <li><a class="btn highlight" href="#">
+                                <div class="menu-item"><img class="nav-icon" src="{% static 'assets/explore.png' %}"
+                                        height="20">Explore<div class="underline2"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+        <div class="call-to-action"><button class="generic-button2" id="contact-trigger">Contact me</button></div>
+        <div class="profile" id="cartbtn">
+            <img class="cart" id="cartflip" src="{% static 'assets/cart.png' %}" height="22">
+            <div class="cart-count">0</div>
+        </div>
+
+        {% if request.user.is_authenticated %}
+        <!--logged in icon-->
+        <div class="profilec" id="userprofileicon">
+            <img src="{{request.user.profile.profilepic.url}}" height="30" alt="profile picture">
+        </div>
+        <script>
+            const userdropdowntarget2 = document.getElementById("userdropdown2");
+            const userprofileicon = document.getElementById("userprofileicon");
+            const closeuserdropdown2 = document.getElementById("userdropdownclose2");
+            userprofileicon.addEventListener("click", () => {
+                    userdropdowntarget2.classList.toggle("open");
+                });
+            closeuserdropdown2.addEventListener("click", () => {
+                    userdropdowntarget2.classList.toggle("open");
+                });
+        </script>
+        {% else %}
+        <!--Not logged in icon-->
+        <div class="profileb" id="user-icon">
+            <img id="profile-btn" class="cart" src="{% static 'assets/user.png' %}" height="22">
+        </div>
+        <script>
+            //User-drop-down
+            const userdropdown = document.getElementById("profile-btn");
+            const userdropdowntarget = document.getElementById("userdropdown");
+            const closeuserdropdown = document.getElementById("userdropdownclose");
+            userdropdown.addEventListener("click", () => {
+                userdropdowntarget.classList.toggle("open");
+            });
+            closeuserdropdown.addEventListener("click", () => {
+                userdropdowntarget.classList.toggle("open");
+            });
+             const userflip = document.getElementById("profile-btn");
+
+                window.addEventListener("scroll", () => {
+                    const currentScroll = window.pageYOffset;
+                    if (currentScroll <= 100) {
+                        userflip.style.filter = "invert(100)";
+                    }
+                    if (currentScroll > 100) {
+                        userflip.style.filter = "invert(0)";
+                    }
+                });
+        </script>
+        {% endif %}
+        
+
+
+    </div>
+
+    <!--Mobile-toggle-->
+    <div class="nav-mobile-container">
+        <div class="search" id="search-mobile">
+            <form method="GET" action="{% url 'gsearch' %}">
+                <img class="search-icon dark" id="search-icon-mobile" src="{% static 'assets/search.png' %}" height="28">
+                <img class="close" id="close-mobile" src="{% static 'assets/cancel-search.png' %}" height="22">
+                <input class="search-input2" type="text" name="q" placeholder="Search.." onclick="submit">
+                <button class="go" type="submit" onclick="submit"><img id="go-mobile" src="{% static 'assets/search.png' %}"
+                        height="22"></button>
+            </form>
+            <ul class="autocomplete-result-list"></ul>
+        </div>
+        <img class="toggle dark" id="menu-toggle" src="{% static 'assets/menu-toggle.png' %}" height="28">
+    </div>
+</div>
+
+<!--Navbar-Mobile-->
+<div class="navmobile" id="nav-mobile">
+    <ul class="menumobile-list">
+        <img class="close-menu" id="menu-close" src="{% static 'assets/close.png' %}" height="28">
+        <li><a href="#"><img src="{% static 'assets/explore.png' %}" height="15">Explore</a></li>
+        <li><a href="music"><img src="{% static 'assets/music.png' %}" height="15">Music</a></li>
+        <li><a href="digitalart"><img src="{% static 'assets/digitalart.png' %}" height="15">Digital art</a></li>
+        <li><a href="code"><img src="{% static 'assets/code.png' %}" height="15">code</a></li>
+
+    </ul>
+    <span class="button-pop" id="contact-trigger2">Contact Me</span>
+    <div class="profile2">
+        <img id="cartbtn2" class="cart2" src="{% static 'assets/cart.png' %}" height="22">
+        <div class="cart-count"> 0 </div>
+
+        {% if request.user.is_authenticated %}
+        <!--logged in icon-->
+        <div class="profiled" id="userprofileicon2">
+            <img src="{{request.user.profile.profilepic.url}}" height="30" alt="profile picture">
+        </div>
+        <script>
+            const userprofileicon2 = document.getElementById("userprofileicon2");
+            userprofileicon2.addEventListener("click", () => {
+                    userdropdowntarget2.classList.toggle("open");
+                }); 
+        </script>
+        {% else %}
+        <!--Not logged in icon-->
+        <img id="profile-btn-mobile" class="cart3" src="{% static 'assets/user.png' %}" height="22">
+        <script>
+                const userdropdown2 = document.getElementById("profile-btn-mobile");
+
+                userdropdown2.addEventListener("click", () => {
+                        userdropdowntarget.classList.toggle("open");
+                    });
+        </script>
+        {% endif %}
+
+    </div>
+
+</div>
+
+<!--Hero-->
+<div class="hero-container">
+    <!--<img src="assets/testwallpaper.png" alt="">-->
+    <video class="hero" src="{% static 'assets/herotest.mp4' %}" muted loop autoplay></video>
+
+</div>
+<div class="promo-container">
+    <img class="promo-splash" src="{% static 'assets/logo2.png' %}">
+    <img class="nav-dir" id="promo-left" src="{% static 'assets/back.png' %}">
+    <div class="promo-subcontainer" id="promotarget">
+
+        <!--Music-promo-->
+        {% for item in featuredmusic %}
+        <div class="promo-content">
+            <span class="promo-label"><img class="promo-icon" src="{% static 'assets/music.png' %}">
+                <h5>Featured music</h5>
+            </span>
+            
+            <div class="music-container">
+                <div class="music-promo">
+                    <div class="promo-cont1">
+                        <div class="promo-albumart">
+                            <a class="anchor" href="{% url 'play' %}/{{item.name}}"><img src="{{item.previewimage.url}}"></a>
+                        </div>
+
+                        <div class="song-promo-text">
+                            <h4>Listen to</h4>
+                            <h2>{{item.name}}</h2>
+                            <h3>by {{item.artist}}</h3>
+                        </div>
+                    </div>
+                    <div class="listen-links">
+                        <a href="{{item.spotifylink}}"><img src="{% static 'assets/spotify.png' %}" height="32"></a>
+                        <a href="{{item.youtubelink}}"><img src="{% static 'assets/youtube.png' %}" height="32"></a>
+                        <a href="{{item.applelink}}"><img src="{% static 'assets/applemusic.png' %}" height="32"></a>
+                        <a href="#"><img src="{% static 'assets/info.png' %}" height="32"></a>
+                        <a class="anchor" href="{% url 'play' %}/{{item.name}}"><div class="generic-button3"><img src="{% static 'assets/play.png' %}" height="20">Play</div></a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+        <!--Art-promo-->
+        {% for item in featuredart %}
+        <div class="promo-content">
+            <span class="promo-label"><img class="promo-icon" src="{% static 'assets/digitalart.png' %}">
+                <h5>Featured Art</h5>
+            </span>
+            
+            <a class="anchor" href="{% url 'explore' %}/{{item.supercategory}}/{{item.category}}/{{item.subcategory}}" target="_blank">
+            <div class="art-promo">
+                <div class="art-promo-image"">
+                <div class=" clip-promo-image">
+                    <img src="{{item.previewimage.url}}">
+                </div>
+                </div>
+            </div>
+            </a>
+            
+        </div>
+        {% endfor %}
+    <!--Youtube-promo-->
+    <div class="promo-content">
+        <span class="promo-label"><img class="promo-icon" src="{% static 'assets/youtube.png' %}">
+            <h5>Featured Video</h5>
+        </span>
+        <div class="youtube-link">
+            <iframe src="https://www.youtube.com/embed/AaSanyE1pRY" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+    
+
+</div>
+<img class="nav-dir2" id="promo-right" src="{% static 'assets/forward.png' %}">
+
+</div>
+
+<!--Chevrons-->
+<div class="chevrons">
+    <div class='chevrondown'></div>
+    <div class='chevrondown'></div>
+</div>
+
+<div class="item-count"><h5>{{item_count}} items found..</h5></div>
+
+{% include 'artsnapshot.html' %}
+{% include 'musicsnapshot.html' %}
+{% include 'codesnapshot.html' %}
+
+
+{% endblock %}

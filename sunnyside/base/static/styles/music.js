@@ -1,0 +1,320 @@
+//=====copyright Kiseu=====//
+
+//Preloader
+var loader = document.getElementById("preloader");
+window.addEventListener("load", function () {
+  loader.style.display = "none";
+});
+
+//Search-toggle-full
+const icon1 = document.getElementById("search-icon-full");
+const navtoggle = document.getElementById("nav-bar-full");
+const search = document.getElementById("search-full");
+const cancel = document.getElementById("close-full");
+
+icon1.addEventListener("click", () => {
+  search.classList.toggle("active");
+  navtoggle.classList.toggle("active");
+});
+cancel.addEventListener("click", () => {
+  search.classList.toggle("active");
+  navtoggle.classList.toggle("active");
+});
+
+//Menuactive
+var btnContainer = document.getElementById("highlight");
+var btns = btnContainer.getElementsByClassName("btn");
+
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function () {
+    var current = document.getElementsByClassName("highlight");
+    current[0].className = current[0].className.replace("highlight");
+    this.className += " highlight";
+  });
+}
+
+//Search-toggle-mobile
+const icon1m = document.getElementById("search-icon-mobile");
+const navtogglem = document.getElementById("nav-bar-mobile");
+const searchm = document.getElementById("search-mobile");
+const cancelm = document.getElementById("close-mobile");
+
+icon1m.addEventListener("click", () => {
+  searchm.classList.toggle("active");
+  navtogglem.classList.toggle("active");
+});
+cancelm.addEventListener("click", () => {
+  searchm.classList.toggle("active");
+  navtogglem.classList.toggle("active");
+});
+
+//Menu-toggle
+const menutoggle = document.getElementById("menu-toggle");
+const menuclose = document.getElementById("menu-close");
+const navmobile = document.getElementById("nav-mobile");
+
+menutoggle.addEventListener("click", () => {
+  navmobile.classList.toggle("active");
+});
+menuclose.addEventListener("click", () => {
+  navmobile.classList.toggle("active");
+});
+
+//Hide-show navbar
+let lastScroll = 0;
+const target = document.getElementById("peek");
+
+window.addEventListener("scroll", () => {
+  const currentScroll = window.pageYOffset;
+
+  //nav-darkmode-flip
+  const codedark = document.getElementById("codeid");
+  const digitalartdark = document.getElementById("digitalartid");
+  //const musicdark = document.getElementById("musicid");
+  const exploredark = document.getElementById("exploreid");
+  const codedicon = document.getElementById("codeicon");
+  const digitalarticon = document.getElementById("digitalarticon");
+  //const musicicon = document.getElementById("musicicon");
+  const exploreicon = document.getElementById("exploreicon");
+  const searchcloseicon = document.getElementById("close-full");
+  const searchgoicon = document.getElementById("go-icon");
+  const searchcloseiconm = document.getElementById("close-mobile");
+  const searchgoiconm = document.getElementById("go-mobile");
+  const cartflip = document.getElementById("cartflip");
+
+  if (currentScroll <= 100) {
+    target.style.backgroundImage = "none";
+    icon1.classList.add("dark");
+    icon1m.classList.add("dark");
+    menutoggle.classList.add("dark");
+    codedark.style.color = "var(--white)";
+    digitalartdark.style.color = "var(--white)";
+    //musicdark.style.color = "var(--white)";
+    exploredark.style.color = "var(--white)";
+    codedicon.style.filter = "invert(100)";
+    digitalarticon.style.filter = "invert(100)";
+    //musicicon.style.filter = "invert(100)";
+    exploreicon.style.filter = "invert(100)";
+    searchgoicon.style.filter = "invert(100)";
+    searchcloseiconm.style.filter = "invert(100)";
+    searchgoiconm.style.filter = "invert(100)";
+    searchcloseicon.style.filter = "invert(100)";
+    cartflip.style.filter = "invert(100)";
+  }
+  if (currentScroll > 100) {
+    target.style.backgroundImage = 'url("/static/assets/bg3.jpg")';
+    icon1.classList.remove("dark");
+    icon1m.classList.remove("dark");
+    menutoggle.classList.remove("dark");
+    codedark.style.color = "var(--black)";
+    digitalartdark.style.color = "var(--black)";
+    //musicdark.style.color = "var(--black)";
+    exploredark.style.color = "var(--black)";
+    codedicon.style.filter = "invert(0)";
+    digitalarticon.style.filter = "invert(0)";
+    //musicicon.style.filter = "invert(0)";
+    exploreicon.style.filter = "invert(0)";
+    searchgoicon.style.filter = "invert(0)";
+    searchcloseicon.style.filter = "invert(0)";
+    searchgoiconm.style.filter = "invert(0)";
+    searchcloseiconm.style.filter = "invert(0)";
+    cartflip.style.filter = "invert(0)";
+  }
+  if (currentScroll > lastScroll && !target.classList.contains("hide")) {
+    target.classList.remove("show");
+    target.classList.add("hide");
+  }
+  if (currentScroll < lastScroll && !target.classList.contains("show")) {
+    target.classList.remove("hide");
+    target.classList.add("show");
+  }
+
+  lastScroll = currentScroll;
+});
+
+//Scroll-to-top
+mybutton = document.getElementById("up");
+window.onscroll = function () {
+  scrollFunction();
+};
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0;
+}
+
+//Contact-scroll
+const contactscroll = document.getElementById("contact-trigger");
+const contactscrollmobi = document.getElementById("contact-trigger2");
+const footerloc = document.getElementById("contactloc");
+
+contactscroll.addEventListener("click", () => {
+  footerloc.scrollIntoView();
+});
+contactscrollmobi.addEventListener("click", () => {
+  footerloc.scrollIntoView();
+});
+
+//Music-player
+const musictoggle = document.querySelector(".handle");
+const closemusic = document.getElementById("close-player");
+const musicplayer = document.getElementById("player-loc");
+const musictarget = document.getElementById("music-target");
+
+musictoggle.addEventListener("click", () => {
+  musictarget.classList.toggle("show");
+  musicplayer.classList.toggle("active");
+});
+closemusic.addEventListener("click", () => {
+  musictarget.classList.toggle("show");
+  musicplayer.classList.toggle("active");
+});
+
+//Cookie-consent
+const cookieModal = document.querySelector(".cookies-super");
+const cancelcookie = document.getElementById("cancelcookies");
+const acceptcookie = document.getElementById("acceptall");
+
+cancelcookie.addEventListener("click", function () {
+  //alert("message");
+  cookieModal.classList.remove("active");
+});
+acceptcookie.addEventListener("click", function () {
+  cookieModal.classList.remove("active");
+  localStorage.setItem("cookieAccepted", "yes");
+});
+
+setTimeout(function () {
+  let cookieAccepted = localStorage.getItem("cookieAccepted");
+  if (cookieAccepted != "yes") {
+    cookieModal.classList.add("active");
+  }
+}, 4000);
+
+//Song-options
+const songoptions = document.getElementById("song-options");
+const songoptionssub = document.getElementById("song-options-sub");
+
+songoptions.addEventListener("click", () => {
+  songoptionssub.classList.toggle("show");
+});
+
+//Player-variables
+hae = document.getElementById("cue");
+pp = document.getElementById("playpause");
+progress = document.getElementById("progress");
+seeking = false;
+ct = document.getElementById("ct");
+volbtn = document.getElementById("volbtn");
+
+//player-funstions
+function pad(str) {
+  return (parseInt(str) < 10 ? "0" : "") + str;
+}
+
+audioData = {};
+
+Object.defineProperties(audioData, {
+  seekto: {
+    get: function () {
+      return hae.duration * (progress.value / 100);
+    },
+    enumerable: true,
+    configurable: true,
+  },
+  time: {
+    get: function () {
+      return hae.currentTime * (100 / hae.duration);
+    },
+    enumerable: true,
+    configurable: true,
+  },
+  mins: {
+    get: function () {
+      return Math.floor(hae.currentTime / 60);
+    },
+    enumerable: true,
+    configurable: true,
+  },
+  secs: {
+    get: function () {
+      return Math.floor(hae.currentTime % 60);
+    },
+    enumerable: true,
+    configurable: true,
+  },
+});
+
+//trigget-events
+pp.addEventListener("click", togglePlay);
+progress.addEventListener("mousedown", function (event) {
+  seeking = true;
+  seek(event);
+});
+progress.addEventListener("mousemove", function (event) {
+  seek(event);
+});
+progress.addEventListener("mouseup", function () {
+  seeking = false;
+});
+hae.addEventListener("timeupdate", function () {
+  seekTimeUpdate();
+});
+
+//Play- Pause
+newestsong = document.getElementById("newestsong");
+function togglePlay() {
+  if (hae.paused) {
+    hae.play();
+    pp.style.backgroundImage = 'url("/static/assets/pause.png")';
+  } else {
+    hae.pause();
+    pp.style.backgroundImage = 'url("/static/assets/play.png")';
+  }
+}
+hae.addEventListener("ended", () => {
+  pp.style.backgroundImage = 'url("/static/assets/play.png")';
+});
+
+//progres sbar
+function seek(event) {
+  if (seeking) {
+    progress.value = event.clientX - progress.offsetLeft;
+    hae.currentTime = audioData.seekto;
+  }
+}
+//Current time
+function seekTimeUpdate() {
+  progress.value = audioData.time;
+  ct.innerHTML = pad(audioData.mins) + ":" + pad(audioData.secs);
+}
+
+//Volume Controls
+volbtn.addEventListener("click", () => {
+  volumeslider.classList.toggle("active");
+});
+
+function toggleMute() {
+  var myAudio = document.getElementById("audio_playo24");
+  myAudio.muted = !myAudio.muted;
+}
+
+function mute() {
+  if (hae.muted) {
+    hae.muted = false;
+    volbtn.style.backgroundImage = 'url("/static/assets/volume.png")';
+  } else {
+    hae.muted = true;
+    volbtn.style.backgroundImage = 'url("/static/assets/muted.png")';
+  }
+}
+volumeslider.addEventListener("mousemove", setvolume);
+function setvolume() {
+  hae.volume = volumeslider.value / 100;
+}

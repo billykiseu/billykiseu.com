@@ -1,0 +1,7 @@
+{% load static %}
+
+{% for category in artdrop %}
+<a class="anchor" href="{% url 'explore' %}{% url 'music' %}/{{category.name}}">
+    <div class="dropdown-item">{{category.name}}</div>
+</a>
+{% endfor %}

@@ -1,0 +1,43 @@
+{% extends 'maincredentials.html' %}
+{% load static %}
+{% block content %}
+<div class="splashb">
+    <!--Sign-up-->
+    <div class="login-container" id="bsignup">
+        <div class="blogo">
+            <img src="{% static 'assets/logo2.png' %}">
+        </div>
+        <div class="bcard">
+            <form action="signup" method="post">
+                {% csrf_token %}
+                <div class="bentry">
+                    <h3>Sign up</h3> 
+                </div>
+                <div class="bentry">
+                    <img src="{% static 'assets/user.png' %}" height="25">
+                    {{form.username}}
+                </div>
+                <div class="bentry">
+                    <img src="{% static 'assets/mail.png' %}" height="22">
+                    {{form.email}}
+                </div>
+                <div class="bentry">
+                    <img src="{% static 'assets/padlock.png' %}" height="25">
+                    {{form.password1}}
+                </div>
+                <div class="bentry">
+                    <img src="{% static 'assets/padlock.png' %}" height="25">
+                    {{form.password2}}
+                </div>
+                <div class="bentry">
+                    <div value="Go back!" onclick="history.back()" class="generic-button4">Cancel</div>
+                    <button type="submit" class="generic-button3">Sign Up</button>
+                </div>
+                
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

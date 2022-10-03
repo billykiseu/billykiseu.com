@@ -1,0 +1,28 @@
+{% extends 'maincredentials.html' %}
+{% load static %}
+{% block content %}
+<div class="splashb">
+    <!--Sign-up-->
+    <div class="login-container" id="bsignup">
+        <div class="blogo">
+            <img src="{% static 'assets/logo2.png' %}">
+        </div>
+        <div class="bcard">
+            <form method="post">
+                {% csrf_token %}
+                <div class="bentry">
+                    <h3>Change password</h3>
+                </div>
+                <div class="bentry2">
+                    {{form}}
+                </div>
+
+                <div class="bentry">
+                    <button type="Submit" name="Update Password" class="generic-button3">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

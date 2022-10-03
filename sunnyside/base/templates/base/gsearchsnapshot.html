@@ -1,0 +1,47 @@
+{% load static %}
+
+<!--Global Serach-->
+<div class="category-container">
+    <a href="#" class="category-header"><span>Search Results</span></a>
+    <div class="category-subcontainer">
+        {% for item in gsearch %}
+
+        {% if item.filetype == "audio" %}
+        <a class="anchor" href="{% url 'play' %}/{{item.name}}">   
+        <div class="card-medium">
+            <img class="card-medium-img" src="{{item.previewimage.url}}">
+            <span class="category-text"><b>{{item.supercategory.name}}</b>/{{item.category.name}}</span>
+            <span class="description-text">{{item.subcategory.name}}</span>
+            <span class="name-text"><b>{{item.name}}</b></span>
+            <span class="description-text">{{item.description}}</span>
+            <span class="date-text">{{item.created|timesince}} ago</span>
+            <div class="play-count"><img src="{% static 'assets/play.png' %}">
+                <h5>{{item.total_views}} Plays</h5>
+            </div>
+        </div>
+        </a>
+        {% elif item.filetype == "image" %}
+        <a class="anchor" href="{{item.targetfile.url}}" target="_blank">
+            <div class="card-large">
+                <img class="card-large-img" src="{{item.previewimage.url}}">
+                <span
+                    class="category-text"><b>{{item.supercategory.name}}</b>/{{item.category.name}}/{{item.subcategory.name}}</span>
+                <span class="name-text"><b>{{item.name}}</b></span>
+                <span class="description-text">{{item.description}}</span>
+                <span class="date-text">{{item.created|timesince}} ago</span>
+            </div>
+        </a>
+        {% else %}
+        <a class="anchor" href="{{item.mainlink}}">
+            <div class="card-medium">
+                <span
+                    class="category-text"><b>{{item.supercategory.name}}</b>/{{item.category.name}}/{{item.subcategory.name}}</span>
+                <span class="name-text"><b>{{item.name}}</b></span>
+                <span class="description-text">{{item.description}}</span>
+                <span class="date-text">{{item.created|timesince}} ago</span>
+            </div>
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>

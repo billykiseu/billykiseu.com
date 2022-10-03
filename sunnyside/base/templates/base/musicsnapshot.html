@@ -1,0 +1,25 @@
+{% load static %}
+
+<!--Music-->
+<div class="category-container">
+    <a href="#" class="category-header"><span>Music</span></a>
+    
+    <div class="category-subcontainer">
+        {% for item in musicitems2 %}
+        <a class="anchor" href="{% url 'explore' %}/{{item.supercategory}}/{{item.category}}/{{item.subcategory}}">
+         <div class="card-medium">
+            <img class="card-medium-img" src="{{item.previewimage.url}}">
+            <span class="category-text"><b>{{item.supercategory.name}}</b>/{{item.category.name}}</span>
+            <span class="description-text">{{item.subcategory.name}}</span>    
+            <span class="name-text"><b>{{item.name}}</b></span>
+            <span class="description-text">{{item.description}}</span>
+            <span class="date-text">{{item.created|timesince}} ago</span>
+            <div class="play-count"><img src="{% static 'assets/play.png' %}">
+                <h5>{{item.total_views}} Plays</h5>
+            </div>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
+    
+</div>

@@ -1,0 +1,34 @@
+{% load static %}
+
+<!--Dropdown not loggedin-->
+<div class="userdropdown" id="userdropdown">
+    <div class="userdropdown-list">
+        <img id="userdropdownclose" class="userdropdown-close" src="{% static 'assets/close.png' %}">
+        <h5>You are not logged in</h5>
+        <div class="user-box">
+            <a class="anchor" href="{% url 'login' %}">
+                <div class="generic-button3">Log in</div>
+            </a>
+            <a class="anchor" href="{% url 'signup' %}">
+                <div class="generic-button4">Sign up</div>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<!--Dropdown2 logged in-->
+<div class="userdropdown2" id="userdropdown2">
+    <div class="userdropdown-list">
+        <img id="userdropdownclose2" class="userdropdown-close" src="{% static 'assets/close.png' %}">
+        <a href="{% url 'editprofile' %}">
+            <div class="profile-image-medium">
+            <img src="{{request.user.profile.profilepic.url}}" alt="profile-image">
+            </div>
+        </a>
+        <h5><b>{{request.user.username}}</b></h5>
+        <h5>{{request.user.email}}</h5>
+        <a class="anchor" href="{% url 'logout' %}"><div class="generic-button3">log out</div></a>
+    </div>
+
+</div>

@@ -1,0 +1,31 @@
+{% extends 'maincredentials.html' %}
+{% load static %}
+{% block content %}
+
+<div class="splashb">
+
+    <!--Recover-->
+    <div class="login-container" id="brecovery">
+        <div class="blogo">
+            <img src="{% static 'assets/logo2.png' %}">
+        </div>
+        <div class="bcard">
+            <form method="post">
+                {% csrf_token %}
+                <div class="bentry">
+                    <h3>Recovery</h3>
+                </div>
+                <div class="bentry">
+                    <img src="{% static 'assets/mail.png' %}" height="22">
+                    {{recover_form.email}}              
+                </div>
+                <div class="bentry">
+                    <div value="Go back!" onclick="history.back()" class="generic-button4" id="close-recovery">Cancel</div>
+                    <button type="Submit" name="Send email" class="generic-button3">Recover</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
